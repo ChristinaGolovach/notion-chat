@@ -1,0 +1,6 @@
+@NotionChat.Api_HostAddress = http://localhost:5198
+
+GET {{NotionChat.Api_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###
