@@ -89,6 +89,19 @@ NotionAgent.Api/
 
 ---
 
+## API Contract
+
+```
+POST /api/chat/conversations
+→ { "conversationId": "abc-123" }
+
+POST /api/chat/conversations/{id}/messages
+Body: { "message": "What tasks are overdue?" }
+→ { "reply": "Based on your Notion Sprint board..." }
+```
+
+---
+
 ## Phase 6: API Controller
 
 | # | Task | Details |

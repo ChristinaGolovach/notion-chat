@@ -55,21 +55,21 @@ AI chatbot that answers user questions based on data from their Notion workspace
 │  ┌─────────────────────────────────────────────────────┐    │
 │  │               ChatController                        │    │
 │  └──────────────────────┬──────────────────────────────┘    │
-│                         │                                    │
+│                         │                                   │
 │  ┌──────────────────────▼──────────────────────────────┐    │
-│  │              AgentOrchestrator                       │    │
-│  │                                                      │    │
+│  │              AgentOrchestrator                      │    │
+│  │                                                     │    │
 │  │  1. Receives user message                           │    │
 │  │  2. Calls Claude API with tools (MCP tool defs)     │    │
 │  │  3. When Claude requests a tool → routes to MCP     │    │
 │  │  4. Returns tool results to Claude                  │    │
 │  │  5. Returns final answer to controller              │    │
 │  └─────────┬────────────────────────┬──────────────────┘    │
-│            │                        │                        │
-│  ┌─────────▼──────────┐  ┌─────────▼──────────────────┐    │
-│  │  ClaudeApiClient    │  │  McpToolRouter             │    │
-│  │  (Anthropic API)    │  │  (.NET MCP SDK)            │    │
-│  └─────────────────────┘  └─────────┬──────────────────┘    │
+│            │                        │                       │
+│  ┌─────────▼──────────┐  ┌─────────▼──────────────────┐     │
+│  │  ClaudeApiClient    │  │  McpToolRouter            │     │
+│  │  (Anthropic API)    │  │  (.NET MCP SDK)           │     │
+│  └─────────────────────┘  └─────────┬─────────────────┘     │
 │                                      │ stdio                 │
 │  ┌─────────────────────┐             │                       │
 │  │  PromptBuilder      │             │                       │
@@ -91,7 +91,7 @@ AI chatbot that answers user questions based on data from their Notion workspace
                                        │ Notion API
                                        ▼
                               ┌─────────────────┐
-                              │  Notion Workspace │
+                              │Notion Workspace │
                               └─────────────────┘
 ```
 
