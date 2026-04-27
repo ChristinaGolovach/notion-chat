@@ -62,8 +62,8 @@ public class AgentOrchestrator : IAsyncDisposable
 
 			var request = new MessageCreateParams
 			{
-				Model = Model.ClaudeSonnet4_5,
-				MaxTokens = 4096,
+				Model = Model.ClaudeHaiku4_5,
+				MaxTokens = 64000,
 				System = conversation.SystemPrompt,
 				Messages = conversation.Messages,
 				Tools = _claudeTools

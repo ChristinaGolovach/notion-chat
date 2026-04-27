@@ -1,0 +1,50 @@
+<div class="chat-container">
+  <header class="chat-header">
+    <h1>Notion Chat</h1>
+    <button class="new-chat-btn" (click)="startNewChat()" [disabled]="isLoading() || isConnecting()">
+      {{ isConnecting() ? 'Connecting�' : '+ New Chat' }}
+    </button>
+  </header>
+
+  <div class="messages" #messagesContainer>
+    @if (messages().length === 0 && !isLoading()) {
+      <div class="empty-state">
+        <p>Ask anything about your Notion workspace.</p>
+      </div>
+    }
+
+    @for (msg of messages(); track $index) {
+      <div class="message" [class.user]="msg.role === 'user'" [class.assistant]="msg.role === 'assistant'">
+        <div class="message-role">{{ msg.role === 'user' ? 'You' : 'Assistant' }}</div>
+        <div class="message-content">{{ msg.content }}</div>
+      </div>
+    }
+
+    @if (isLoading()) {
+      <div class="message assistant">
+        <div class="message-role">Assistant</div>
+        <div class="message-content loading-indicator">
+          <span class="dot"></span>
+          <span class="dot"></span>
+          <span class="dot"></span>
+        </div>
+      </div>
+    }
+
+    @if (errorMessage()) {
+      <div class="error-banner">{{ errorMessage() }}</div>
+    }
+  </div>
+
+  <form class="input-area" (ngSubmit)="sendMessage()">
+    <textarea
+      [(ngModel)]="userInput"
+      name="userInput"
+      placeholder="Type your message"
+      (keydown)="onKeyDown($event)"
+      [disabled]="isLoading() || !isReady()"
+      rows="1"
+    ></textarea>
+    <button type="submit" [disabled]="isLoading() || !userInput().trim()">Send</button>
+  </form>
+</div>
